@@ -12,20 +12,24 @@ typedef struct node{
 }stack;
 stack *top = NULL;
 
-void push();
+void push(int data);
 void pop();
 void peek();
-
+static int pop_count = 0;
 int main()
 {
-	push();
-	push();
-	peek();
-	pop();
+	for(int i=0;i<3;i++)
+	{
+		if(i%2 == 0 && i !=0)
+		{
+			peek();
+		}
+		push(i+1);
+	}
 	pop();
 }
 
-void push()
+void push(int data)
 {
 	stack *newnode = (stack*)malloc(sizeof(stack));
 	if(newnode == NULL)
@@ -34,8 +38,7 @@ void push()
 	}
 	else
 	{
-		printf("Enter the data\n");
-		scanf("%d",&newnode->data);
+		newnode->data = data;
 		newnode->link = top;
 		top = newnode;
 	}
@@ -43,13 +46,20 @@ void push()
 
 void pop()
 {
+	if(top == NULL)
+	{
+		printf("Stack is empty\n");
+	}
+	if(++pop_count%2 == 0)
+	{
+		printf("The deleted item is %d\n",top->data);
+	}
 	stack *temp = top;
-	printf("Popped value is %d\n",top->data);
 	top = temp->link;
 	free(temp);
 }
 	
 void peek()
 {
-	printf("Data at top is %d",top->data);
+	printf("Data at top is %d\n",top->data);
 }
