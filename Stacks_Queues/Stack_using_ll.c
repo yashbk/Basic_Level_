@@ -2,59 +2,54 @@
 //Date : 04-05-2022
 //Description : create a stack and push 1,2,3 and pop once - print after even push and pop
 
-#include <stdio.h>
 
-typedef struct node{   //Self referencial structure
+#include<stdio.h>
+#include<stdlib.h>
+
+typedef struct node{
 	int data;
 	struct node *link;
 }stack;
+stack *top = NULL;
 
-void push(stack **top,int data);
-void pop(stack **top);
+void push();
+void pop();
+void peek();
 
 int main()
 {
-	stack *top = NULL;
-	int i = 0, data=0;
-	while(i++<3)
-	{
-		printf("Enter data:");
-		scanf("%d",&data);
-		push(&top,data):
-	}
+	push();
+	push();
+	peek();
+	pop();
+	pop();
 }
 
-void push(stack **top,int data)
+void push()
 {
-	stack *newnode = (stack *)malloc(sizeof(stack);
-			if(newnode == NULL)
-			{
-				printf("Memory not allocated\n");
-			}
-			else
-			{
-				newnode->data = data;
-				newnode->link = NULL;
-				if(*top == NULL)
-				{
-					*top = newnode;
-				}
-			}
-}
-void pop(stack **top)
-{
-	if(*top == NULL)
+	stack *newnode = (stack*)malloc(sizeof(stack));
+	if(newnode == NULL)
 	{
-		printf("Stack is empty\n");
+		printf("Memory allocation not successful\n");
 	}
 	else
 	{
-		stack *temp = *top;
-		*top = temp->link;
-		printf("Deleted element is : %d",temp->data);
-		free(temp);
+		printf("Enter the data\n");
+		scanf("%d",&newnode->data);
+		newnode->link = top;
+		top = newnode;
 	}
 }
 
-
-
+void pop()
+{
+	stack *temp = top;
+	printf("Popped value is %d\n",top->data);
+	top = temp->link;
+	free(temp);
+}
+	
+void peek()
+{
+	printf("Data at top is %d",top->data);
+}
