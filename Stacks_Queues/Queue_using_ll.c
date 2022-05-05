@@ -15,17 +15,25 @@ typedef struct node{
 queue *front = NULL;
 queue *rear = NULL;
 
+void show(queue *);
 void enqueue();
 void dequeue();
 void display();
+static int dequeue_count = 0;
 
 int main()
 {
 	int i=0;
 	while(i++<SIZE)
 	{
-		enqueue(i);
+		
+		enqueue(i+1);
+		if(i%2 == 0)
+		{
+			show(front);
+		}
 	}
+	dequeue();
 }
 
 void enqueue(int data)
@@ -55,5 +63,41 @@ void enqueue(int data)
 
 void dequeue()
 {
+	dequeue_count++;
+	if(dequeue_count%2 == 0)
+	{
+		show(rear);
+	}
+	if(front == NULL)
+	{
+		printf("List is empty\n");
+	}
+	else
+	{
+		queue *temp = front;
+		front = temp->link;
+		free(temp);
+	}
+}
 
+void display()
+{
+	if(front == NULL)
+	{
+		printf("List is empty\n");
+	}
+	else
+	{
+		queue *temp = front;
+		while(temp != NULL)
+		{
+			printf("%d\n",temp->data);
+			temp = temp->link;
+		}
+	}
+}
+void show(queue *temp)
+{
+	printf("Even data is %d\n",temp->data);
+}
 

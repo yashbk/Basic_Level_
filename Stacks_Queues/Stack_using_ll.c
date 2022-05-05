@@ -52,7 +52,7 @@ void pop()
 	}
 	if(++pop_count%2 == 0)
 	{
-		printf("The deleted item is %d\n",top->data);
+		printf("The deleted even data is %d\n",top->data);
 	}
 	stack *temp = top;
 	top = temp->link;
@@ -61,5 +61,5 @@ void pop()
 	
 void peek()
 {
-	printf("Data at top is %d\n",top->data);
+	printf("Entered even data is %d\n",top->data);
 }
