@@ -1,0 +1,285 @@
+===================  OPERATORS ========================
+
+Evaluate the expression in a step by step way based on operator precedence and associativity
+
+1) printf("%d\n",1==5==5); //0==5 false so prints 0
+
+2) int i =0;
+   printf("%d %d",i,i++); //1 0 . Execution happens from right to left
+
+3) int x=5;
+   printf("%d %d %d\n",x++,x++,x++); //7 6 5
+
+4) int x=2;
+   printf("%d   ",++x++); //Error
+   printf("%d\n",x++);    
+
+5) int k=1;
+   printf("%d==1 is ""%s\n",k,k==1?"TRUE":"FALSE");//k==1 is TRUE
+
+6) int i=5;
+   i=i++ - --i + ++i; // 5 - 5 + 6 = 6
+
+7) int a=7;
+   a+=a+=a-=6;   //right to left assignment  
+   printf("%d\n",a); // a+=a+=1  a+=2 a= 4; prints 4
+
+8) int x=10,y=5,p,q;
+   p=x>9;  //p=1
+   q=p||(x=5,y=10);  //q = 1 and right operators are ignored bcz of OR
+   printf("%d %d %d\n",q,x,y); // 1 10 5
+
+9) int x=2,y=1;
+   y+=x<<=2; // <<= has higher precedence so y+=8; y=9
+   printf("%d %d\n",x,y); prints 8 9
+
+10) int x=2,y=4,z;
+    z=y++*x++|y--;    // 4*2|5
+    printf("%d\n",z); // 13
+
+11) int a=5,b=6,c=7,d;
+    d=a&=b&=c&&a;    // d=a&=b&=1 ; d=a&=0 ; d = 0
+    printf("%d\n",d); // prints 0
+
+12) int i=10;
+    i=(10<10)?(10>=10)?(10<=10)?1:2:3:4; //Associativity is right to left
+    printf("%d\n",i); // prints 4
+
+13) int a=10,b=20;
+    a=(a>5||(b=6)?40:50); 
+    printf("%d\n",a);  // prints 40
+
+14) printf("%x\n",-1>>4); // ffffffff
+    printf("%x\n",-1<<4); // fffffff0
+
+15) int x=7;
+    x=(x<<=x%2);  x = x<<1
+    printf("%d\n",x); // 14
+
+16) int a=2,b=5,c=1;
+    printf("%d\n",(b>=a>=c?1:0)); // b>=1 ; true ;prints 1
+
+17) int a=5;
+    a=a-~a +1;  // 5 - (-6) +1
+    printf("%d\n",a); // prints 12
+
+18) a=b=c=1;
+    x=--a||++b*(3-1)/2&&b*(--c/3);// 0 || 2 * 2 / 1 * 0 
+    printf("%d\n",x); // prints 0
+
+19) a=10
+    b = -5
+    c = 2.5 //Assuming data type as float
+    printf("%d %d",sizeof(a) + sizeof((++b) *c, b); //prints   4 + 4 * 2 -5; 12 -5
+
+20) int i=5;
+    i=i++ - i //5 - 6 = -1
+    printf("%d",i) //prints -1
+
+========================================= PREPROCESSORS AND MACROS ===========================
+
+1) What will be the output of the C program?
+#include<stdio.h>
+#define CONDITION(i)\
+printf("preprocessor works\n");                         
+int main()
+{
+	CONDITION(0); // preprocessor works
+	return 0;
+}
+
+2) What will be the output of the C program?
+#include<stdio.h>
+# define loop while(true)
+int main()
+{
+	loop;  
+	printf("preprocessor-aptitude"); //infinite loop so won't print anything
+	return 0;
+}
+
+3) What will be the output of the C program?
+#include<stdio.h>
+# define x --5
+int main()
+{
+	printf("%d",x); // prints 4
+	return 0;
+}
+
+4) What will be the output of the C program ?
+#include<stdio.h>
+#define sqr(x) ++x * ++x 
+int main()
+{
+	int a = 3, z;
+	z = ++a * ++a;   // z = 5 * 5 = 25 
+	a -= 3;			//   a = 5 - 3 = 2
+	printf("%d %d", sqr(a), z); //a= 4 * 4 = 16 ; prints 16 25
+	return 0;
+}
+
+5) What will be the output of the C program?
+#include<stdio.h>                      
+#define x 1+2
+int main()
+{
+	int i;
+	i = x * x * x; // 1+2*1+2*1+2; 1+2+2+2; 7
+	printf("%d",i);//prints 7
+}
+
+6) What will be the output of the C program?
+#include<stdio.h>
+#define a =
+int main()
+{
+	int num a 6; // int num = 6;
+	printf("%d",num); //prints 6
+	return 0;
+}
+
+7) What will be the output of the C program?
+#include<stdio.h>
+#define fun(x,y) x*y
+int main()
+{
+	int x = 2, y = 1;
+	printf("%d",fun(x + 2, y - 1));// x+2*y-1 ; 2+2*1-1 ; 2+2-1; prints 3
+	return 0;
+}
+
+8) What will be the output of the C program?
+#include<stdio.h>
+int main()
+{
+	char DATE[15] = "Current Date"; 
+	printf("%s\n", __DATE__ ); 
+	return 0;
+}
+
+9) What will be the output of the C program?
+#include<stdio.h>
+int main()
+{
+	char TIME[15] = "Current Time";
+	printf("%s\n",__TIME__); // __TIME_ is a macro which returns string "May 5 2022"
+	return 0;
+}
+
+10) What will be the output of the C program?
+#include<stdio.h>
+int main()
+{	
+	printf("Line :%d\n", __LINE__ ); //__LINE__ is a macro which prints the line of printf
+	return 0;
+}
+
+11) What will be the output of the C program?
+#include<stdio.h>
+#define  preprocessor_works(x, y)  \
+	printf(#x " and " #y " are great!\n")
+int main(void) {
+	preprocessor_works(you, me); //prints you and me are great!
+	return 0;
+}
+
+12) What will be the output of the C program?
+#include<stdio.h>
+# define puts  "%s C preprocessor"
+int main()
+{
+	printf(puts, puts); //prints %s C preprocessor C preprocessor
+	return 0;
+}
+
+13) What will be the output of the C program?
+#include<stdio.h>
+#define preprocessor(n) printf ("macro" #n " = %d", macro##n)
+int main(void) {
+	int macro25 = 47;
+	preprocessor(25); //prints macro25 = 47
+	return 0;
+}
+
+14) What will be the output of the C program?
+#include<stdio.h>
+#include<string.h>
+#define MACRO(num) ++num 
+int main()
+{
+	char *ptr = "preprocessor";
+	int num =strlen(ptr);
+	printf("%s  ", MACRO(ptr)); //prints reprocessor 
+	printf("%d", MACRO(num)); // prints 13
+	return 0;
+}
+
+15) What will be the output of the C program?
+#include<stdio.h>
+#define i 10
+int main()
+{
+	#define i 20
+	printf("%d",i); //prints 20
+	return 0;
+}
+
+16) What will be the output of the C program?
+#include<stdio.h>
+#define clrscr() 50
+int main()
+{
+	clrscr(); /// 50; is a valid statement;
+	printf("%d\n",clrscr()); //prints 50
+	return 0;
+}
+
+17) What will be the output of the C program?
+#include<stdio.h>
+#define int char
+main()
+{
+	int i=5;
+	printf ("sizeof (i) =%d", sizeof (i)); // prints 1
+}
+
+18) Write programs to understand the usage of below preprocessor directives.
+#include, #if, #ifdef, #ifndef, #else, #elif, #endif, #define, #undef, #line, #error, and #pragma
+
+
+
+===================================== TYPEDEF =========================================
+
+1) In the following code, the P2 is Integer Pointer or Integer?
+typedef int *ptr;
+ptr p1, p2; //Integer pointer
+
+2)  In the following code what is 'P'?
+typedef char *charp;
+const charp P;      //P is a const pointer if we do the same without typedef then P will be a pointer to a const char
+
+3) What is x in the following program?
+#include<stdio.h>
+int main()
+{
+    typedef char (*(*arrfptr[3])())[10]; 
+    arrfptr x; //x is an array of three function pointers of return type char
+    return 0;
+}
+
+4) What is apfArithmatics in the below statement?
+typedef int (*apfArithmatics[3])(int,int);  //array of three function pointers of return type int
+
+5) What is pf in the below statement?
+typedef int (*pf)(int); //function pointer 
+
+6) What do the following declarations mean?
+typedef char *pc; //pc is the alias for char*
+typedef pc fpc(); // char * fpc()
+typedef fpc *pfpc;// 
+typedef pfpc fpfpc();
+typedef fpfpc *pfpfpc;
+pfpfpc a[N];
+
+7) Write few programs using typedef on structures and enums.
