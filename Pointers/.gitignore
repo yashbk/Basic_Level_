@@ -1,4 +1,5 @@
 a.exe
-./../.vscode/
+../.vscode/
+.vs/
 functions.h.gch
 *.o
