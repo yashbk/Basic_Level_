@@ -5,16 +5,16 @@
 void insertion_sort(int row, int *arr)
 {
     int temp = 0,i,j;
-    for (i = 1; i < row; i++)
+     for (i = 1 ; i <= row - 1; i++)
     {
-        temp = arr[i];
-        j = i-1;
-        while(j>=0 && arr[i]>temp)
-        {
-            arr[j+1] = arr[j];
-            j--;
-        }
-        arr[j+1] = temp;
+	    j = i;
+            while ( j > 0 && arr[j-1] > arr[j])
+            {	        
+                temp     = arr[j];
+                arr[j]   = arr[j-1];
+                arr[j-1] = temp;
+                j--;
+            }
     }
 }
 
