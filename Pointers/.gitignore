@@ -1,3 +1,4 @@
 a.exe
 *.gch
 *.o
+./../.vscode/
