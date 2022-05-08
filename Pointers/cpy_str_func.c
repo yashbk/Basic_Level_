@@ -8,7 +8,7 @@ void str_cpy(char *src,char *dest)
 int str_length(char *ptr)
 {
 	char *start = ptr;
-	while(*ptr++ != NULL);
+	while(*ptr++ != '\0');
 	ptr--;
 	return ptr-start;
 }
