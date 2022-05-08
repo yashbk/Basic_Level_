@@ -1,22 +1,27 @@
 //Author : Yashas B K
 //Date : 08-05-2022
-// Insertion sort
+// Selection sort
 
 #include <stdio.h>
 
-void insertion_sort(int row, int *arr)
+void Selection_sort(int row, int *arr)
 {
-    int temp = 0,i,j;
-     for (i = 1 ; i <= row - 1; i++)
+    int temp = 0;
+    int position = 0;
+    for (int i = 0; i < (row - 1); i++)
     {
-	    j = i;
-            while ( j > 0 && arr[j-1] > arr[j])
-            {	        
-                temp     = arr[j];
-                arr[j]   = arr[j-1];
-                arr[j-1] = temp;
-                j--;
-            }
+        position = i;
+        for (int j = i + 1; j < row; j++)
+        {
+            if (arr[position] > arr[j])
+                position = j;
+        }
+        if (position != i)
+        {
+            temp = arr[i];
+            arr[i] = arr[position];
+            arr[position] = temp;
+        }
     }
 }
 
@@ -43,7 +48,7 @@ int main()
 
     printf("Before sorting:\n");
     print_arr(sizeof(arr) / sizeof(int), arr);
-    insertion_sort(sizeof(arr) / sizeof(int), arr);
+    Selection_sort(sizeof(arr) / sizeof(int), arr);
     printf("After sorting:\n");
     print_arr(sizeof(arr) / sizeof(int), arr);
 }
