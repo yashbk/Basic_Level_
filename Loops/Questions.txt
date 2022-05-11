@@ -275,11 +275,11 @@ typedef int (*apfArithmatics[3])(int,int);  //array of three function pointers o
 typedef int (*pf)(int); //function pointer 
 
 6) What do the following declarations mean?
-typedef char *pc; //pc is the alias for char*
-typedef pc fpc(); // char * fpc()
-typedef fpc *pfpc;// 
-typedef pfpc fpfpc();
-typedef fpfpc *pfpfpc;
-pfpfpc a[N];
+typedef char *pc; //pc is an alias for a pointer to a character
+typedef pc fpc(); //fpc is a function of return type char*
+typedef fpc *pfpc; //pfpc is an alias for a pointer to a function with return type char*
+typedef pfpc fpfpc(); //fpfpc is an alias for a function returning pointer to a function of return type char*
+typedef fpfpc *pfpfpc; //pfpfpc is an alias for a pointer to a function returning pointer to a function of return type char*
+pfpfpc a[N]; //a is an array of N elements of type pointer to a function returning pointer to a function of return type char* 
 
 7) Write few programs using typedef on structures and enums.
