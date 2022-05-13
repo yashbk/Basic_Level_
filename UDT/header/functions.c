@@ -1,3 +1,4 @@
+#include "header.h"
 #include <stdio.h>
 
 void LE_or_BE()
@@ -14,3 +15,27 @@ void LE_or_BE()
     }
 }
 
+void sort_struct(str *arr_of_struct,int len)
+{
+    int temp=0;
+    for(int i=0;i<len-i;i++)
+    {
+        for(int j=0;j<len-1;j++)
+        {
+            if(*((arr_of_struct+j)->data) > *((arr_of_struct+j+1)->data))
+            {
+                temp = *((arr_of_struct+j)->data);
+                *((arr_of_struct+j)->data) = *((arr_of_struct+j+1)->data);
+                *((arr_of_struct+j+1)->data) = temp;
+            }
+        }
+    }
+}
+
+void print_arr_of_struct(str *arr_of_struct,int len)
+{
+    for(int i=0;i<len;i++)
+    {
+        printf("%c ",*((arr_of_struct+i)->data));
+    }
+}
