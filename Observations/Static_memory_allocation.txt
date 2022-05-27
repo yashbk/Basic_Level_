@@ -1,0 +1,39 @@
+->No matter in what order you declare variables, least memory allocation
+will be done to least size datatype.
+->If you declare variables like below
+#include <stdio.h>
+typedef struct{
+    int name;
+    int some;
+}stu;
+int main()
+{
+    stu one = {1,2};
+    printf("Address of stu is %p\n",&one);
+    double f=2;
+    printf("Address of f is %p\n",&f);
+    int a=2;
+    printf("Address of a is %p\n",&a);
+    double b=2;
+    printf("Address of b is %p\n",&b);
+    int c=2;
+    printf("Address of c is %p\n",&c);
+    double d=2;
+    printf("Address of d is %p\n",&d);
+    int e=2;
+    printf("Address of e is %p\n",&e);
+    return 0;
+}
+
+Output:
+                                 sequence of allocation
+Address of stu is 0x7ffcbb1fe6c0 7 structure
+Address of f is 0x7ffcbb1fe6a8   4	float
+Address of a is 0x7ffcbb1fe69c   1	int
+Address of b is 0x7ffcbb1fe6b0   5	float
+Address of c is 0x7ffcbb1fe6a0   2 	int
+Address of d is 0x7ffcbb1fe6b8   6	float
+Address of e is 0x7ffcbb1fe6a4   3	int
+
+Similar datatype or size variables will be allocated continuously no matter where
+that variable is declared.
