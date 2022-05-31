@@ -17,11 +17,7 @@ int main()
 {
 	int input,digit,count = 0;
 	printf("Enter the consecutive values"\n);
-	while(1)
-	{
-		scanf("%d",&input);
-		digit = num;
-		while(1)
+}
 
 		
 
